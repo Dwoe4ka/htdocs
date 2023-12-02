@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@300;600&display=swap');
+
+* {
+   margin: 0;
+   padding: 0;
+
+}
+
+body {
+    background: rgb(30, 30, 30);
+    font-family: 'Saira Extra Condensed', sans-serif;
+    font-weight: 300;
+}
+
+header {
+     background: rgb(60, 60, 60);
+     padding: 20px 100px;
+     color: #fff;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+}
+
+header .logo {
+    font-weight: 600;
+    font-size: 30px;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 20px;
+    transition: all 500ms ease;
+}
+
+header nav a.btn {
+  padding: 5px;
+  border: 2px solid skyblue;
+  border-radius: 3px;
+}
+
+header nav a.btn:hover {
+  font-size: 25px;
+  color: skyblue;
+}
+
+main {
+    margin-top: 50px;
+    margin-left: 50px;
+    color: #fff;
+    font-size: 50px;
+    width: 50%;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+form {
+    margin: 30px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    font-size: 30px;
+}
+
+form input {
+    width: 100%;
+    border: 1px solid skyblue;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+form button {
+    background: solid skyblue;
+    width: 100%;
+    border: 2px solid skyblue;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    transition: transform 500ms ease;
+}
+
+form button:hover {
+    transform: scale(1.1);
+}
+
+.err {
+    color: red;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px 0;
+    display: none;
+}
+
+aside {
+    margin-top: 50px;
+    float: right; 
+    margin-right: 50px;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 40px;
+    box-sizing: border-box;
+}
+
+aside .info {   
+    background: rgb(60, 60, 60);
+    color: #fff;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    line-height: 150%;
+    border-radius: 5px;
+}

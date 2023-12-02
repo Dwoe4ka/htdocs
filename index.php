@@ -1,58 +1,31 @@
-<?php //session_start() ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ua">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP</title>
+    <? require 'head.php' ?>
+    <title>Дворобанк</title>
 </head>
 <body>
-    
-    <?php 
-    /*
-    $user = 'root';
-    $password = 'root';
-    $db = 'users';
-    $host = 'localhost';
-    $port = 3306;
-    $dsn = 'mysql:host'.$host.';dbname='.$db;
-    $pdo = new PDO($dsn, $user, $password);
-    $query = $pdo->query('SELECT * FROM `users`');
-    //require 'header.php';
-    if ($_SESSION['name_surname'] != "")
-    echo 'Ім\'я та прізвище: ' . $_SESSION['name_surname'] . '<br>';
-    if ($_SESSION['password'] != "")
-    echo 'Пароль: ' . $_SESSION['password'] . '<br>';
-    //require 'footer.php'; 
-    //$name_surname = $_POST['name_surname'];
-    //$password = $_POST['password'];
-    ////if ($_COOKIE['name_surname'] != "" || $_COOKIE['account_password'] != "") {
-    ////echo 'Ім\'я та прізвище: ' . $_COOKIE['name_surname'] . '<br>';
-    ////echo 'Пароль: ' . $_COOKIE['account_password'] . '<br>';
-    ////}
-    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-        echo $row['id']. ' ';
-        echo $row['name_surname'].' ';
-        echo $row['c_amount'];
-    }
-    */
-    try {
-        $dsn = "mysql:host=localhost;dbname=users";
-        $user = "root";
-        $passwd = "root";
-        $pdo = new PDO($dsn, $user, $passwd);
-        echo 'Done!<br>';
-        $query = $pdo->query('SELECT * FROM users');
-        while ($row = $query->fetch(PDO::FETCH_OBJ)) {
-            echo 'TEXT ID->'.$row->id.'<br>';
-            echo 'TEXT NS->'.$row->name_surname.'<br>';
-            echo 'TEXT AM->'.$row->c_amount.'<br>';
-        }
-    }
-    catch (PDOException $e) {
-         echo "Error!: " . $e->getMessage() . "<br/>";
-         die();
-     }
+    <? require 'header.php' ?>
+    <? require "aside.php" ?>
+    <main>
+    <?
+    require_once "dbconnect.php";
+    $sql = 'SELECT c_number, c_amount FROM users WHERE `name_surname` = ?';
+    $query = $pdo->prepare($sql);
+    $query->execute([$_COOKIE['logged']]);
+    $user = $query->fetch(PDO::FETCH_OBJ);  
     ?>
+    <span>Дворобанк</span>
+    <? if(isset($_COOKIE['logged'])): ?>
+    <h1>Вітаю, <?=$_COOKIE['logged'] ?></h1>
+    <h2>Номер вашої карти - <?=$user->c_number ?></h2>
+    <h3>Кількість мотивашок - <?=$user->c_amount ?></h3>
+    <? else: ?>
+    <h4>Зареєструйтесь або увійдіть в акаунт для перегляду своїх карток</h4>
+    <? endif ?>
+    </main>
+    <?
+    ?>
+    <? require "footer.php" ?>
 </body> 
 </html> 
