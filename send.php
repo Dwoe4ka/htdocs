@@ -39,6 +39,7 @@
                 if(data === "Done") {
                   $("#send_btn").text("Надіслано!")
                   $('#err_msg').hide();
+                  document.location.reload(true);
                 }
                 else {
                      $('#err_msg').show();
@@ -50,3 +51,4 @@
     </script>
 </body>
 </html>
+<!-- Файл сторінки з передаванням грошей, вводяться дані і з допомогою ajax передаються в ajax/send.php, у випадку чого виводиться помилка -->

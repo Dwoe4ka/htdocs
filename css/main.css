@@ -105,16 +105,15 @@ aside {
     margin-top: 50px;
     float: right; 
     margin-right: 50px;
-    width: 500px;
-    display: flex;
+    width: 750px;
     justify-content: space-between;
     align-items: center;
-    font-size: 40px;
+    font-size: 20px;
     box-sizing: border-box;
 }
 
 aside .info {   
-    background: rgb(60, 60, 60);
+    background: rgb(60, 60, 60);    
     color: #fff;
     width: 100%;
     padding: 20px;

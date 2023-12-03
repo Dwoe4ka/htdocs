@@ -28,7 +28,13 @@ $c_amount_s = $query->fetch(PDO::FETCH_OBJ);
     exit();
     }
     else if ($c_amount_me->c_amount < $cs_amount){
-    echo "Арабів на карті замало, необхідно $cs_amount, є " . $c_amount_me->c_amount;
+    echo "Мотивашок на карті замало, необхідно $cs_amount, є " . $c_amount_me->c_amount;
+    }
+    else if ($cs_amount < 0) {
+    echo "Красти гроші заборонено статуом ОЧН";
+    }
+    else if ($cs_amount == 0) {
+      echo "Не смішно";
     }
     else {
     $c_newamount_me = $c_amount_me->c_amount - $cs_amount;
@@ -39,5 +45,14 @@ $c_amount_s = $query->fetch(PDO::FETCH_OBJ);
     $sql_me_send = 'UPDATE `users` SET `c_amount` = :c_newamount_me WHERE `name_surname` = :name_surname'; 
     $query_me_send = $pdo->prepare($sql_me_send);
     $query_me_send->execute(['c_newamount_me' => $c_newamount_me, 'name_surname' => $_COOKIE['logged']]);
-    echo 'Done';
     }
+    
+$year = date('Y');
+$month = date('m');
+$day = date('d');
+$date = "$year-$month-$day";
+$sql_transfer = 'INSERT INTO `transfers` (`t_amount`, `t_card_from`, `t_card_to`, `t_name_from`, `t_name_to`, `t_time`) VALUES (?, ?, ?, ?, ?, ?)';
+$query_transfer = $pdo->prepare($sql_transfer);
+$query_transfer->execute([$cs_amount, $c_amount_me->c_number, $c_amount_s->c_number, $c_amount_me->name_surname, $c_amount_s->name_surname, $date]);
+echo 'Done';
+    
