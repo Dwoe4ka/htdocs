@@ -21,6 +21,14 @@
      <h1>Ви вже в акаунті, <?=$_COOKIE['logged'] ?></h1>
      <form>
       <button type="button" id="exit">Вийти з акаунта</button>
+      <label for="old_pass">Введіть старий пароль</label>
+      <input type="password" name="old_pass" id="old_pass">
+      <label for="new_pass">Введіть новий пароль (Від 8 символів)</label>
+      <input type="password" name="new_pass" id="new_pass">
+      <label for="new_pass_re">Повторіть новий пароль</label>
+      <input type="password" name="new_pass_re" id="new_pass_re">
+      <div class="err" id="err_msg"></div>
+      <button type="button" id="passc_btn">Змінити пароль</button>
      </form>
      <? endif ?>
     </main>
@@ -46,6 +54,34 @@
                   $("#auth_btn").text("Зареєстровано!")
                   $('#err_msg').hide();
                   document.location.reload(true);
+                }
+                else {
+                     $('#err_msg').show();
+                     $('#err_msg').text(data);
+                }
+            }
+          });
+        });
+
+        $('#passc_btn').click(function() {
+          let old_pass = $('#old_pass').val();
+          let new_pass = $('#new_pass').val();
+          let new_pass_re = $('#new_pass_re').val();
+
+          $.ajax({
+            url: 'ajax/pass_change.php',
+            type:'POST',
+            cache: false,
+            data: {'old_pass': old_pass,
+                   'new_pass': new_pass,
+                   'new_pass_re': new_pass_re
+                  },
+            dataType: 'html',
+            success: function(data) {
+                console.log(data);
+                if(data === "Done") {
+                  $("#auth_btn").text("Пароль змінено!")
+                  $('#err_msg').hide();
                 }
                 else {
                      $('#err_msg').show();

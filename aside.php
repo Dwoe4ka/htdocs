@@ -4,7 +4,7 @@
     </h1>
     <? 
         require_once "dbconnect.php";
-        $sql = 'SELECT * FROM transfers WHERE `t_name_from` = ? ORDER BY `t_time` DESC';
+        $sql = 'SELECT * FROM transfers WHERE `t_name_from` = ? ORDER BY `t_id` DESC';
         $query = $pdo->prepare($sql);
         $query->execute([$_COOKIE['logged']]);
         if($query->rowCount() == 0) {

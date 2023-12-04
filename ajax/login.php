@@ -19,7 +19,7 @@ $query_salt = $pdo->prepare($sql_salt);
 $query_salt->execute([$name_surname]);
 $salt = $query_salt->fetch(PDO::FETCH_OBJ);
 $password = $password . $salt->h_salt;
-$password = md5($password);
+$password = hash('sha256', $password);
 $sql = 'SELECT id FROM users WHERE `name_surname` = ? AND `h_password` = ?';
 $query = $pdo->prepare($sql);
 $query->execute([$name_surname, $password]);

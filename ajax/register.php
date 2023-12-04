@@ -3,7 +3,7 @@ $name_surname = trim(filter_var($_POST['name_surname'], FILTER_SANITIZE_SPECIAL_
 $password = trim(filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS));
 $password_re = trim(filter_var($_POST['password_re'], FILTER_SANITIZE_SPECIAL_CHARS));
 $question = trim(filter_var($_POST['question'], FILTER_SANITIZE_SPECIAL_CHARS));
-$question = md5($question);
+$question = hash('sha256', $question);
 $err = '';
 
 if (strlen($name_surname) < 2)
@@ -14,7 +14,7 @@ else if (strlen($password)<8)
  $err = 'Пароль замалий';
 else if ($password != $password_re)
  $err = 'Паролі не співпадають';
-else if ($question != 'de7ac276a68af285df3f65064e0f31ce')
+else if ($question != 'D59B22BE6E66624A50563C5142F3A12899726BF84B55A37C667E00DC81A23BCA')
  $err = 'Відповідь на секретне питання неправильна';
 
 require_once "../dbconnect.php";
@@ -24,16 +24,17 @@ $h_salt = '';
 for ($i = 0; $i < 16; $i++) {
     $h_salt .= $characters[rand(0, strlen($characters) - 1)];
 }
-$sql_salt = 'SELECT id FROM users WHERE `h_salt` = ?';
-$query_salt = $pdo->prepare($sql_salt);
-$query_salt->execute([$h_salt]);
-  if($query_salt->rowCount() > 1) {
-    $h_salt = rand(10000000, 99999999);
-}
 
 $c_number = rand(10000000, 99999999);
 $password = $password . $h_salt;
-$password = md5($password);
+$password = hash('sha256', $password);
+
+$sql_numb = 'SELECT id FROM users WHERE `c_number` = ?';
+$query_numb = $pdo->prepare($sql_numb);
+$query_numb->execute([$c_number]);
+while($query_numb->rowCount() >= 1) {
+    $c_number = rand(10000000, 99999999);
+}
 
 $sql_name = 'SELECT id FROM users WHERE `name_surname` = ?';
 $query_name = $pdo->prepare($sql_name);
