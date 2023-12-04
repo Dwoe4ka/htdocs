@@ -10,7 +10,7 @@
      <? if(!isset($_COOKIE['logged'])): ?>
      <h1>Реєстрація</h1>
      <form>
-      <label for="name_surname">Введіть прізвище та ім'я (Від 3 до 30 символів)</label>
+      <label for="name_surname">Введіть прізвище та ім'я (Від 3 до 255 символів)</label>
       <input type="text" name="name_surname" id="name_surname">
       <label for="password">Введіть ваш пароль (Від 8 символів)</label>
       <input type="password" name="password" id="password">

@@ -18,9 +18,10 @@
       <button type="button" id="auth_btn">Авторизуватися</button>
      </form>
      <? else: ?>
-     <h1>Ви вже в акаунті, <?=$_COOKIE['logged'] ?></h1>
+      <h1> Мій кабінет </h1>
      <form>
       <button type="button" id="exit">Вийти з акаунта</button>
+      <h1> Зміна паролю: </h1>
       <label for="old_pass">Введіть старий пароль</label>
       <input type="password" name="old_pass" id="old_pass">
       <label for="new_pass">Введіть новий пароль (Від 8 символів)</label>

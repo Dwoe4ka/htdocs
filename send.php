@@ -12,8 +12,10 @@
      <form>
       <label for="c_number">Введіть номер карти особи, яка отримає кошти</label>
       <input type="text" name="c_number" id="c_number">
-      <label for="cs_amount">Введіть Кількість грошей, які ви бажаєте надіслати</label>
+      <label for="cs_amount">Введіть кількість грошей, які ви бажаєте надіслати</label>
       <input type="text" name="cs_amount" id="cs_amount">
+      <label for="comment">Введіть коментар (За бажанням)</label>
+      <input type="text" name="comment" id="comment">
       <div class="err" id="err_msg"></div>
       <button type="button" id="send_btn">Надіслати</button>
      </form>
@@ -25,13 +27,15 @@
         $('#send_btn').click(function() {
           let c_number = $('#c_number').val();
           let cs_amount = $('#cs_amount').val();
+          let comment = $('#comment').val();
 
           $.ajax({
             url: 'ajax/send.php',
             type:'POST',
             cache: false,
             data: {'c_number': c_number,
-                   'cs_amount': cs_amount
+                   'cs_amount': cs_amount,
+                   'comment': comment
                   },
             dataType: 'html',
             success: function(data) {

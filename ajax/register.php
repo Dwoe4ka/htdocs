@@ -14,7 +14,7 @@ else if (strlen($password)<8)
  $err = 'Пароль замалий';
 else if ($password != $password_re)
  $err = 'Паролі не співпадають';
-else if ($question != 'D59B22BE6E66624A50563C5142F3A12899726BF84B55A37C667E00DC81A23BCA')
+else if ($question != 'd59b22be6e66624a50563c5142f3a12899726bf84b55a37c667e00dc81a23bca')
  $err = 'Відповідь на секретне питання неправильна';
 
 require_once "../dbconnect.php";
@@ -49,7 +49,7 @@ if ($err != '') {
     exit();
 }
 
-$sql = 'INSERT INTO `users` (`name_surname`, `h_password`, `h_salt`, `c_number`, `c_amount`) VALUES (?, ?, ?, ?, ?)';    
+$sql = 'INSERT INTO `users` (`name_surname`, `h_password`, `h_salt`, `c_number`, `c_amount`, `code`) VALUES (?, ?, ?, ?, ?, ?)';    
 $query = $pdo->prepare($sql);
-$query->execute([$name_surname, $password, $h_salt, $c_number, '0']);
+$query->execute([$name_surname, $password, $h_salt, $c_number, '0', '0']);
 echo 'Done';

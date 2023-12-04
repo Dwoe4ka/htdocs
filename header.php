@@ -8,6 +8,9 @@
         <a href="/auth.php" class="btn">Увійти</a>
         <a href="/reg.php" class="btn">Зареєструватись</a>
     <? endif; ?>
+    <? if ($_COOKIE['logged'] == 'admin'): ?>
+        <a href="/admin.php" class="btn">Панель адміністратора</a>
+    <? endif; ?>
         <a href="/" class="btn">🏠</a>
     </nav>
 </header>

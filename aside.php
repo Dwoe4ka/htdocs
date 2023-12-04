@@ -4,15 +4,19 @@
     </h1>
     <? 
         require_once "dbconnect.php";
-        $sql = 'SELECT * FROM transfers WHERE `t_name_from` = ? ORDER BY `t_id` DESC';
+        $sql = 'SELECT * FROM transfers WHERE `t_name_from` = ? OR `t_name_to` = ? ORDER BY `t_id` DESC';
         $query = $pdo->prepare($sql);
-        $query->execute([$_COOKIE['logged']]);
+        $query->execute([$_COOKIE['logged'], $_COOKIE['logged']]);
         if($query->rowCount() == 0) {
             echo "<h1 class=\"info\"> Транзакції відсутні </h1>";
         }
         while($row = $query->fetch(PDO::FETCH_OBJ)) {
         echo "<p class=\"info\">" . $row->t_time . " - Transfer " .$row->t_card_from . " -> " . $row->t_card_to . "</p>"; 
-        echo "<p class=\"info\">" . "Користувач ". $row->t_name_from . " надіслав " . $row->t_amount . " мотивашок користувачу " . $row->t_name_to . "</p>";   
+        echo "<p class=\"info\">" . "Користувач ". $row->t_name_from . " надіслав " . $row->t_amount . " мотивашок користувачу " . $row->t_name_to . "</p>";
+        if($row->t_comment != '') {
+        echo "<p class=\"info\">" . "Коментар: ". $row->t_comment . "</p>";
+        }   
+        echo "<p class=\"info\">" . "________________________________________________________________________________________________________________________" . "</p>";
         }
     ?>
 </aside>

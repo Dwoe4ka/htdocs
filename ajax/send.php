@@ -1,7 +1,9 @@
 <?
 $c_number = trim(filter_var($_POST['c_number'], FILTER_SANITIZE_SPECIAL_CHARS));
 $cs_amount = trim(filter_var($_POST['cs_amount'], FILTER_SANITIZE_SPECIAL_CHARS));
+$comment = trim(filter_var($_POST['comment'], FILTER_SANITIZE_SPECIAL_CHARS));
 $err = '';
+$cs_amount = round($cs_amount);
 
 if ($c_number == '')
  $err = 'Введіть номер карти';
@@ -36,6 +38,9 @@ $c_amount_s = $query->fetch(PDO::FETCH_OBJ);
     else if ($cs_amount == 0) {
       echo "Не смішно";
     }
+    else if ($c_amount_me->c_number == $c_amount_s->c_number) {
+      echo "Твої гроші ледве не надіслались Нігерійсьому принцу";
+    }
     else {
     $c_newamount_me = $c_amount_me->c_amount - $cs_amount;
     $c_newamount_s = $c_amount_s->c_amount + $cs_amount;
@@ -50,9 +55,9 @@ $c_amount_s = $query->fetch(PDO::FETCH_OBJ);
     $month = date('m');
     $day = date('d');
     $date = "$year-$month-$day";
-    $sql_transfer = 'INSERT INTO `transfers` (`t_amount`, `t_card_from`, `t_card_to`, `t_name_from`, `t_name_to`, `t_time`) VALUES (?, ?, ?, ?, ?, ?)';
+    $sql_transfer = 'INSERT INTO `transfers` (`t_amount`, `t_card_from`, `t_card_to`, `t_name_from`, `t_name_to`, `t_time`, `t_comment`) VALUES (?, ?, ?, ?, ?, ?, ?)';
     $query_transfer = $pdo->prepare($sql_transfer);
-    $query_transfer->execute([$cs_amount, $c_amount_me->c_number, $c_amount_s->c_number, $c_amount_me->name_surname, $c_amount_s->name_surname, $date]);
+    $query_transfer->execute([$cs_amount, $c_amount_me->c_number, $c_amount_s->c_number, $c_amount_me->name_surname, $c_amount_s->name_surname, $date, $comment]);
     echo 'Done';
     }
     
