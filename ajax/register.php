@@ -7,7 +7,7 @@ $err = '';
 
 if (strlen($name_surname) < 2)
  $err = 'Ім\'я та прізвище замалі';
-else if (strlen($name_surname)>30)
+else if (strlen($name_surname)>255)
  $err = 'Ім\'я та прізвище завеликі';
 else if (strlen($password)<8)
  $err = 'Пароль замалий';
@@ -52,5 +52,5 @@ if ($err != '') {
 
 $sql = 'INSERT INTO `users` (`name_surname`, `h_password`, `h_salt`, `c_number`, `c_amount`, `code`) VALUES (?, ?, ?, ?, ?, ?)';    
 $query = $pdo->prepare($sql);
-$query->execute([$name_surname, $password, $h_salt, $c_number, '0', $code]);
+$query->execute([$name_surname, $password, $h_salt, $c_number, '1000', $code]);
 echo 'Done!';

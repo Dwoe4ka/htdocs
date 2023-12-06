@@ -11,7 +11,7 @@
       <h1>Надсилання коштів</h1>
       <label for="c_number">Введіть номер карти особи, яка отримає кошти</label>
       <input type="text" name="c_number" id="c_number">
-      <label for="cs_amount">Введіть кількість грошей, які ви бажаєте надіслати</label>
+      <label for="cs_amount">Введіть кількість коштів, які ви бажаєте надіслати</label>
       <input type="text" name="cs_amount" id="cs_amount">
       <label for="comment">Введіть коментар (За бажанням)</label>
       <input type="text" name="comment" id="comment">

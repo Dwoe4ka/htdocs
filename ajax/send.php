@@ -8,7 +8,7 @@ $cs_amount = round($cs_amount);
 if ($c_number == '')
  $err = 'Введіть номер карти';
 else if ($cs_amount == '')
- $err = 'Введіть кількість арабів, яких ви хочете надіслати';
+ $err = 'Введіть кількість коштів, які ви хочете надіслати';
 
  if ($err != '') {
      echo "$err";
@@ -33,13 +33,13 @@ $c_amount_s = $query->fetch(PDO::FETCH_OBJ);
     echo "Мотивашок на карті замало, необхідно $cs_amount, є " . $c_amount_me->c_amount;
     }
     else if ($cs_amount < 0) {
-    echo "Красти гроші заборонено статуом ОЧН";
+    echo "Красти гроші заборонено статуом Організації Чайних Націй";
     }
     else if ($cs_amount == 0) {
-      echo "Не смішно";
+      echo "Не можна надсилаті пусті запити";
     }
     else if ($c_amount_me->c_number == $c_amount_s->c_number) {
-      echo "Твої гроші ледве не надіслались Нігерійсьому принцу";
+      echo "Не можна надсилати кошти собі";
     }
     else {
     $c_newamount_me = $c_amount_me->c_amount - $cs_amount;

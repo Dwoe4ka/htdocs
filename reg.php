@@ -10,8 +10,9 @@
      <? if(!isset($_COOKIE['logged'])): ?>
      <form>
       <h1>Реєстрація</h1>
-      <p>Після реєстрації будь ласка зайдіть в ваш кабінет, натисніть на відновлення, та слідуйте подальшим інструкціям</p>
-      <label for="name_surname">Введіть прізвище та ім'я (Від 3 до 255 символів)</label>
+      <p>Після реєстрації будь ласка зайдіть в ваш кабінет, натисніть на відновлення, та запишіть код відновлення в надійне місце</p>
+      <p>З метою тестування всім новим користувачам буде тимчасово видаватись 1000 мотивашок</p>
+      <label for="name_surname">Введіть прізвище та ім'я (Від 3 символів)</label>
       <input type="text" name="name_surname" id="name_surname">
       <label for="password">Введіть ваш пароль (Від 8 символів)</label>
       <input type="password" name="password" id="password">
@@ -21,7 +22,7 @@
       <button type="button" id="reg_btn">Зареєструватися</button>
      </form>
      <? else: ?>
-     <h1>Ви вже зареєстровані! Поверніться на головну сторінку</h1>
+     <h1>Ви вже зареєстровані!</h1>
      <? endif ?>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

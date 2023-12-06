@@ -16,21 +16,21 @@
       <input type="password" name="password" id="password">
       <div class="err" id="err_msg"></div>
       <button type="button" id="auth_btn">Авторизуватися</button>
-      <a href="/recovery" id="recovery">Забули пароль</a> 
+      <a href="/recovery" id="recovery">Забули пароль?</a> 
      </form>
      <? else: ?>
      <form>
       <h1> Мій кабінет </h1>
       <button type="button" id="exit">Вийти з акаунта</button>
-      <h1> Зміна паролю: </h1>
+      <h1> Зміна пароля: </h1>
       <label for="old_pass">Введіть старий пароль</label>
       <input type="password" name="old_pass" id="old_pass">
       <label for="new_pass">Введіть новий пароль (Від 8 символів)</label>
       <input type="password" name="new_pass" id="new_pass">
       <label for="new_pass_re">Повторіть новий пароль</label>
       <input type="password" name="new_pass_re" id="new_pass_re">
-      <button type="button" id="passc_btn">Змінити пароль</button>
       <div class="err" id="err_msg"></div>
+      <button type="button" id="passc_btn">Змінити пароль</button>
       <a href="/recovery" id="recovery">Відновлення</a>
      </form>
      <? endif ?>
