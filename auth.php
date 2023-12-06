@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <? require 'head.php' ?>
     <title>Авторизація</title>
@@ -8,18 +8,19 @@
     <? require 'header.php' ?>
     <main>
       <? if(!isset($_COOKIE['logged'])): ?>
-     <h1>Авторизація</h1>
      <form>
+      <h1>Авторизація</h1>
       <label for="name_surname">Введіть прізвище та ім'я</label>
       <input type="text" name="name_surname" id="name_surname">
       <label for="password">Введіть ваш пароль</label>
       <input type="password" name="password" id="password">
       <div class="err" id="err_msg"></div>
       <button type="button" id="auth_btn">Авторизуватися</button>
+      <a href="/recovery" id="recovery">Забули пароль</a> 
      </form>
      <? else: ?>
-      <h1> Мій кабінет </h1>
      <form>
+      <h1> Мій кабінет </h1>
       <button type="button" id="exit">Вийти з акаунта</button>
       <h1> Зміна паролю: </h1>
       <label for="old_pass">Введіть старий пароль</label>
@@ -28,14 +29,13 @@
       <input type="password" name="new_pass" id="new_pass">
       <label for="new_pass_re">Повторіть новий пароль</label>
       <input type="password" name="new_pass_re" id="new_pass_re">
-      <div class="err" id="err_msg"></div>
       <button type="button" id="passc_btn">Змінити пароль</button>
+      <div class="err" id="err_msg"></div>
+      <a href="/recovery" id="recovery">Відновлення</a>
      </form>
      <? endif ?>
     </main>
-    <aside>
-    </aside>
-    <? require "footer.php" ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         $('#auth_btn').click(function() {
           let name_surname = $('#name_surname').val();
@@ -51,8 +51,8 @@
             dataType: 'html',
             success: function(data) {
                 console.log(data);
-                if(data === "Done") {
-                  $("#auth_btn").text("Зареєстровано!")
+                if(data === "Done!") {
+                  $("#auth_btn").text("Авторизовано!")
                   $('#err_msg').hide();
                   document.location.reload(true);
                 }
@@ -80,8 +80,8 @@
             dataType: 'html',
             success: function(data) {
                 console.log(data);
-                if(data === "Done") {
-                  $("#auth_btn").text("Пароль змінено!")
+                if(data === "Done!") {
+                  $("#passc_btn").text("Пароль змінено!")
                   $('#err_msg').hide();
                 }
                 else {

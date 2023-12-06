@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="ua">
+<html lang="uk">
 <head>
     <? require 'head.php' ?>
     <title>Дворобанк</title>
 </head>
 <body>
     <? require 'header.php' ?>
-    <? require "aside.php" ?>
     <main>
     <?
     require_once "dbconnect.php";
@@ -15,15 +14,12 @@
     $query->execute([$_COOKIE['logged']]);
     $user = $query->fetch(PDO::FETCH_OBJ);  
     ?>
-    <span>Дворобанк</span>
     <? if(isset($_COOKIE['logged'])): ?>
-    <p>Вітаю, <?=$_COOKIE['logged'] ?></p>
-    <p>Номер вашої карти - <?=$user->c_number ?></p>
-    <p>Кількість мотивашок - <?=$user->c_amount ?></p>
+    <p>Вітаю, <b><?=$_COOKIE['logged']?></b>.     Номер вашої карти - <b><?=$user->c_number ?></b>.     Кількість мотивашок - <b><?=$user->c_amount ?></b></p>
     <? else: ?>
-    <h2>Зареєструйтесь або увійдіть в акаунт для перегляду своїх карток</h2>
+    <p><b>Зареєструйтесь або увійдіть в акаунт для перегляду своїх карток</b></p>
     <? endif ?>
-    </main>
+    </main>     
     <?
     ?>
     <? require "footer.php" ?>

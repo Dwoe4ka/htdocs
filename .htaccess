@@ -1,13 +1,12 @@
 AddDefaultCharset UTF-8
 
-ErrorDocument 404 /404.php
+ErrorDocument 404 /404
 
-# RewriteRule ^login?$ auth.php [NC, L]
+RewriteEngine On
 
-# RewriteRule ^register?$ reg.php [NC, L]
-
-# RewriteRule ^send?$ send.php [NC, L]
-
-# RewriteRule ^main?$ index.php [NC, L]
-
-# RewriteRule ^404?$ 404.php [NC, L]
+RewriteRule ^send$ send.php [NC,L]
+RewriteRule ^register$ reg.php [NC,L]
+RewriteRule ^login$ auth.php [NC,L]
+RewriteRule ^admin$ admin.php [NC,L]
+RewriteRule ^404$ 404.php [NC,L]
+RewriteRule ^recovery$ recovery.php [NC,L]

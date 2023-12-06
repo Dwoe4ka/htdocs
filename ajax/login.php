@@ -25,10 +25,8 @@ $query = $pdo->prepare($sql);
 $query->execute([$name_surname, $password]);
   if($query->rowCount() == 0) {
     echo 'Пароль неправильний або такого користувача не існує';
-    exit();
     }
     else {
     setcookie('logged', $name_surname, time() + 604800, "/");
-    echo 'Done';
-    }
-    
+    echo 'Done!';
+    }  

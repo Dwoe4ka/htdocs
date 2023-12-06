@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <? require 'head.php' ?>
-    <title>Надсилання арабів</title>
+    <title>Надсилання коштів</title>
 </head>
 <body>
     <? require 'header.php' ?>
-    <? require "aside.php" ?>
     <main>
-     <h1>Надсилання арабів</h1>
      <form>
+      <h1>Надсилання коштів</h1>
       <label for="c_number">Введіть номер карти особи, яка отримає кошти</label>
       <input type="text" name="c_number" id="c_number">
       <label for="cs_amount">Введіть кількість грошей, які ви бажаєте надіслати</label>
@@ -20,8 +19,6 @@
       <button type="button" id="send_btn">Надіслати</button>
      </form>
     </main>
-    <aside>
-    </aside>
     <? require "footer.php" ?>
     <script>
         $('#send_btn').click(function() {
@@ -40,7 +37,7 @@
             dataType: 'html',
             success: function(data) {
                 console.log(data);
-                if(data === "Done") {
+                if(data === "Done!") {
                   $("#send_btn").text("Надіслано!")
                   $('#err_msg').hide();
                   document.location.reload(true);
